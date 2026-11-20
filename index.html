@@ -13,6 +13,7 @@
     <meta property="og:url" content="https://sumanth3036.github.io/my-portfolio/">
     <meta property="og:image" content="https://sumanth3036.github.io/my-portfolio/sumanthpic.jpeg">
     <meta name="twitter:card" content="summary">
+    <script>document.documentElement.classList.add('js');</script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -93,6 +94,62 @@
             transform: scale(1.2);
         }
 
+        /* ---- Effects (all disabled for prefers-reduced-motion) ---- */
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 60; transform: scaleX(0); transform-origin: 0 50%; background: linear-gradient(90deg, #3b82f6, #10b981); pointer-events: none; }
+        .nav-link.active { color: #2563eb; }
+        .dark .nav-link.active { color: #60a5fa; }
+        .nav-link.active::after { width: 100%; }
+
+        /* Hero */
+        .hero-glow { position: absolute; border-radius: 9999px; filter: blur(80px); pointer-events: none; opacity: .35; }
+        .hero-glow-a { width: 26rem; height: 26rem; right: 6%; top: 12%; background: #3b82f6; animation: glowDrift 18s ease-in-out infinite alternate; }
+        .hero-glow-b { width: 22rem; height: 22rem; right: 24%; bottom: 6%; background: #10b981; opacity: .28; animation: glowDrift 22s ease-in-out infinite alternate-reverse; }
+        .dark .hero-glow { opacity: .22; }
+        .dark .hero-glow-b { opacity: .18; }
+        @keyframes glowDrift { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(-40px,30px,0) scale(1.12); } }
+        #hero-particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+        .typed-caret { display: inline-block; width: 2px; height: 1.1em; margin-left: 3px; vertical-align: -0.15em; background: currentColor; animation: caretBlink 1s steps(1) infinite; }
+        @keyframes caretBlink { 50% { opacity: 0; } }
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+
+        /* Experience timeline */
+        #tl-line { transform: scaleY(1); }
+        .js #tl-line { transform: scaleY(0); }
+        .js .tl-item { opacity: 0; transform: translateX(36px); transition: opacity .6s ease, transform .6s ease; }
+        .js .tl-item.in { opacity: 1; transform: none; }
+        .js .tl-item .tl-dot { transform: scale(0); transition: transform .4s ease .25s; }
+        .js .tl-item.in .tl-dot { transform: scale(1); }
+
+        /* Projects: 3D tilt + glow + image zoom */
+        .project-card.tilt-card { position: relative; transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .2s ease-out, box-shadow .3s ease; will-change: transform; }
+        .tilt-card::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s ease; background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(59,130,246,.18), transparent 45%); }
+        .tilt-card .proj-media > * { transition: transform .5s ease; }
+        @media (hover: hover) and (pointer: fine) {
+            .project-card.tilt-card:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-5px); box-shadow: 0 20px 45px -12px rgba(59,130,246,.35); }
+            .tilt-card:hover::after { opacity: 1; }
+            .tilt-card:hover .proj-media > * { transform: scale(1.08); }
+        }
+
+        /* Certifications: lift + shine */
+        .cert-card { position: relative; overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; }
+        .cert-card::before { content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; pointer-events: none; transform: translateX(0) skewX(-20deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); opacity: 0; }
+        .dark .cert-card::before { background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent); }
+        @media (hover: hover) and (pointer: fine) {
+            .cert-card:hover { box-shadow: 0 14px 30px -10px rgba(16,185,129,.35); }
+            .cert-card:hover::before { opacity: 1; transform: translateX(480%) skewX(-20deg); transition: transform .8s ease, opacity .2s ease; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-glow { animation: none; }
+            .typed-caret { animation: none; display: none; }
+            .js #tl-line { transform: scaleY(1); }
+            .js .tl-item { opacity: 1; transform: none; transition: none; }
+            .js .tl-item .tl-dot { transform: none; transition: none; }
+            .project-card.tilt-card, .project-card.tilt-card:hover { transform: none; }
+            .tilt-card:hover .proj-media > * { transform: none; }
+            .cert-card::before { display: none; }
+        }
+
         /* Skills: 3D ring carousel */
         .skills-stage {
             position: relative; height: 380px; overflow: hidden; border-radius: 1.5rem;
@@ -135,6 +192,7 @@
     </style>
 </head>
 <body class="light bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div id="scroll-progress" aria-hidden="true"></div>
     <!-- Header/Navigation -->
     <header class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
         <div class="container mx-auto px-6 py-4">
@@ -189,11 +247,17 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-20">
-        <div class="container mx-auto px-6 py-20">
+    <section id="home" class="relative overflow-hidden min-h-screen flex items-center pt-20">
+        <!-- Subtle animated background -->
+        <div class="hero-glow hero-glow-a" aria-hidden="true"></div>
+        <div class="hero-glow hero-glow-b" aria-hidden="true"></div>
+        <canvas id="hero-particles" aria-hidden="true"></canvas>
+        <div class="container relative z-10 mx-auto px-6 py-20">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
                     <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="gradient-text">Sumanth</span></h1>
+                    <!-- Typing effect (decorative; the full headline below stays in the DOM for SEO and screen readers) -->
+                    <p class="text-lg md:text-xl font-semibold mb-3 h-8 gradient-text" aria-hidden="true"><span id="typed">AI Engineer</span><span class="typed-caret"></span></p>
                     <h2 class="text-xl md:text-2xl font-semibold mb-6">AI Engineer | LLM Agents, RAG &amp; Production ML APIs | Python, FastAPI</h2>
                     <p class="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-lg">
                         I build backend systems, APIs and AI-integrated products. Trainee Engineer at omniXM, previously Research Intern at IIT Kharagpur, with 3 research publications.
@@ -249,19 +313,19 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                         <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm text-center">
-                            <p class="text-2xl font-bold gradient-text">983 req/min</p>
+                            <p class="text-2xl font-bold gradient-text tabular-nums"><span class="count" data-to="983">983</span> req/min</p>
                             <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Load-tested production API (3.7x peak requirement), ~10x lower latency</p>
                         </div>
                         <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm text-center">
-                            <p class="text-2xl font-bold gradient-text">58.5% → 87.3%</p>
+                            <p class="text-2xl font-bold gradient-text tabular-nums"><span class="count" data-to="58.5" data-dec="1">58.5</span>% → <span class="count" data-to="87.3" data-dec="1">87.3</span>%</p>
                             <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Topic classification accuracy on a reviewer-labelled set</p>
                         </div>
                         <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm text-center">
-                            <p class="text-2xl font-bold gradient-text">0.8992 → 0.9333</p>
+                            <p class="text-2xl font-bold gradient-text tabular-nums"><span class="count" data-to="0.8992" data-dec="4">0.8992</span> → <span class="count" data-to="0.9333" data-dec="4">0.9333</span></p>
                             <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">F1 on an entity-resolution baseline</p>
                         </div>
                         <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm text-center">
-                            <p class="text-2xl font-bold gradient-text">52%</p>
+                            <p class="text-2xl font-bold gradient-text tabular-nums"><span class="count" data-to="52">52</span>%</p>
                             <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Lower position error with ML-based fault detection</p>
                         </div>
                     </div>
@@ -303,11 +367,12 @@
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Experience</span></h2>
 
-            <div class="max-w-4xl mx-auto border-l-2 border-primary-light/40 dark:border-primary-dark/50 ml-2 md:mx-auto">
+            <div id="tl" class="relative max-w-4xl mx-auto border-l-2 border-primary-light/15 dark:border-primary-dark/20 ml-2 md:mx-auto">
+                <div id="tl-line" class="absolute -left-[2px] top-0 w-[2px] h-full origin-top bg-gradient-to-b from-primary-light to-secondary-light" aria-hidden="true"></div>
 
                 <!-- omniXM -->
-                <div class="relative pl-8 md:pl-10 pb-10">
-                    <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
+                <div class="tl-item relative pl-8 md:pl-10 pb-10">
+                    <span class="tl-dot absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
                     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
                         <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
                             <div>
@@ -329,8 +394,8 @@
                 </div>
 
                 <!-- Indian Institute of Technology, Kharagpur -->
-                <div class="relative pl-8 md:pl-10 pb-10">
-                    <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
+                <div class="tl-item relative pl-8 md:pl-10 pb-10">
+                    <span class="tl-dot absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
                     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
                         <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
                             <div>
@@ -353,8 +418,8 @@
                 </div>
 
                 <!-- LogiXair -->
-                <div class="relative pl-8 md:pl-10 ">
-                    <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
+                <div class="tl-item relative pl-8 md:pl-10 ">
+                    <span class="tl-dot absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
                     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
                         <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
                             <div>
@@ -439,8 +504,8 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <!-- Think9 Multi-Agent Knowledge Assistant -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
-                    <div class="h-48 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-indigo-500 to-primary-light dark:from-indigo-700 dark:to-primary-dark">
+                <div class="project-card tilt-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
+                    <div class="proj-media h-48 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-indigo-500 to-primary-light dark:from-indigo-700 dark:to-primary-dark">
                         <i class="fas fa-brain text-6xl text-white/90"></i>
                         <span class="text-white/80 text-xs tracking-[0.25em] uppercase font-semibold">Multi-agent RAG</span>
                     </div>
@@ -464,8 +529,8 @@
                 </div>
 
                 <!-- Data Agent Reliability Evaluation -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
-                    <div class="h-48 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-violet-500 to-secondary-light dark:from-violet-700 dark:to-secondary-dark">
+                <div class="project-card tilt-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
+                    <div class="proj-media h-48 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-violet-500 to-secondary-light dark:from-violet-700 dark:to-secondary-dark">
                         <i class="fas fa-chart-line text-6xl text-white/90"></i>
                         <span class="text-white/80 text-xs tracking-[0.25em] uppercase font-semibold">LLM agent evaluation</span>
                     </div>
@@ -488,8 +553,8 @@
                 </div>
 
                 <!-- Distributed Traffic Surveillance System -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
-                    <div class="h-48 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-sky-500 to-emerald-500 dark:from-sky-700 dark:to-emerald-700">
+                <div class="project-card tilt-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
+                    <div class="proj-media h-48 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-sky-500 to-emerald-500 dark:from-sky-700 dark:to-emerald-700">
                         <i class="fas fa-video text-6xl text-white/90"></i>
                         <span class="text-white/80 text-xs tracking-[0.25em] uppercase font-semibold">Fault-tolerant pipeline</span>
                     </div>
@@ -513,12 +578,12 @@
                 </div>
 
                 <!-- CipherTalk (secure-chat-app) -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
-                    <div class="h-48 overflow-hidden bg-gray-900">
+                <div class="project-card tilt-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
+                    <div class="proj-media h-48 overflow-hidden bg-gray-900">
                         <img src="assets/ciphertalk-chat.jpg"
                              alt="CipherTalk chat screen showing an AES-256 encrypted message"
                              loading="lazy"
-                             class="w-full h-full object-cover object-top transition-transform duration-300 hover:scale-105">
+                             class="w-full h-full object-cover object-top">
                     </div>
                     <div class="p-6 flex flex-col flex-1">
                         <h3 class="text-xl font-semibold mb-2">CipherTalk (secure-chat-app)</h3>
@@ -551,7 +616,7 @@
 
                 <!-- Meta Back-End Developer -->
                 <!-- TODO (optional): add the issue date and a "View Credential" link when available (same markup as the IBM card below). -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card cert-card">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
                         <i class="fab fa-meta text-3xl text-secondary-light dark:text-secondary-dark"></i>
                     </div>
@@ -561,7 +626,7 @@
                 </div>
 
                 <!-- IBM AI Engineering (issue date not publicly readable from the Coursera page; add "Issued <Mon YYYY>" if desired) -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card cert-card">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
                         <i class="fas fa-microchip text-3xl text-secondary-light dark:text-secondary-dark"></i>
                     </div>
@@ -576,7 +641,7 @@
                 </div>
 
                 <!-- Cert 1 - AWS Cloud Operations -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card cert-card">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
                         <i class="fab fa-aws text-3xl text-primary-light dark:text-primary-dark"></i>
                     </div>
@@ -592,7 +657,7 @@
                 </div>
 
                 <!-- Cert 2 - AWS Cloud Foundations -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card cert-card">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
                         <i class="fab fa-aws text-3xl text-primary-light dark:text-primary-dark"></i>
                     </div>
@@ -608,7 +673,7 @@
                 </div>
 
                 <!-- Cert 3 - AWS Cloud Practitioner Essentials -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card cert-card">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
                         <i class="fab fa-aws text-3xl text-primary-light dark:text-primary-dark"></i>
                     </div>
@@ -624,7 +689,7 @@
                 </div>
 
                 <!-- Cert 4 - Introduction to Cybersecurity -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card cert-card">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
                         <i class="fas fa-shield-alt text-3xl text-secondary-light dark:text-secondary-dark"></i>
                     </div>
@@ -640,7 +705,7 @@
                 </div>
 
                 <!-- Cert 5 - Complete Guide to Databricks -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card cert-card">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
                         <i class="fas fa-database text-3xl text-secondary-light dark:text-secondary-dark"></i>
                     </div>
@@ -1068,6 +1133,139 @@
                 });
             }
             sizeOrbs(); build('All'); frame();
+        })();
+
+        // ---- Effects ----
+        (function () {
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+            // Scroll progress, timeline line, active nav (single rAF-throttled handler)
+            const bar = document.getElementById('scroll-progress');
+            const tl = document.getElementById('tl');
+            const tlLine = document.getElementById('tl-line');
+            const sections = ['home','about','experience','education','projects','certifications','publications','skills','contact']
+                .map(id => document.getElementById(id)).filter(Boolean);
+            const navLinks = [...document.querySelectorAll('header a[href^="#"]')].filter(a => a.getAttribute('href') !== '#');
+            let ticking = false, currentId = '';
+            function update() {
+                ticking = false;
+                const max = document.documentElement.scrollHeight - innerHeight;
+                bar.style.transform = 'scaleX(' + (max > 0 ? clamp(scrollY / max, 0, 1) : 0) + ')';
+                if (tl && tlLine && !reduced) {
+                    const r = tl.getBoundingClientRect();
+                    tlLine.style.transform = 'scaleY(' + clamp((innerHeight * 0.7 - r.top) / r.height, 0, 1).toFixed(3) + ')';
+                }
+                let id = sections[0] ? sections[0].id : '';
+                const y = scrollY + 140;
+                sections.forEach(sec => { if (sec.offsetTop <= y) id = sec.id; });
+                if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) id = 'contact';
+                if (id !== currentId) {
+                    currentId = id;
+                    navLinks.forEach(a => {
+                        const on = a.getAttribute('href') === '#' + id;
+                        a.classList.toggle('active', on);
+                        if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+                    });
+                }
+            }
+            const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            update();
+
+            // Timeline cards slide in
+            const items = document.querySelectorAll('.tl-item');
+            if ('IntersectionObserver' in window && !reduced) {
+                const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.15 });
+                items.forEach(el => io.observe(el));
+            } else {
+                items.forEach(el => el.classList.add('in'));
+            }
+
+            // Count-up (final text already in the markup; animate only when JS + motion allowed)
+            const counts = document.querySelectorAll('.count');
+            if ('IntersectionObserver' in window && !reduced) {
+                counts.forEach(el => { el.textContent = (0).toFixed(+el.dataset.dec || 0); });
+                const co = new IntersectionObserver(es => es.forEach(e => {
+                    if (!e.isIntersecting) return;
+                    co.unobserve(e.target);
+                    const el = e.target, to = parseFloat(el.dataset.to), dec = +el.dataset.dec || 0, t0 = performance.now(), dur = 1500;
+                    (function step(now) {
+                        const k = clamp((now - t0) / dur, 0, 1), eased = 1 - Math.pow(1 - k, 3);
+                        el.textContent = k < 1 ? (to * eased).toFixed(dec) : to.toFixed(dec);
+                        if (k < 1) requestAnimationFrame(step);
+                    })(t0);
+                }), { threshold: 0.6 });
+                counts.forEach(el => co.observe(el));
+            }
+
+            // Hero: typing effect
+            const typed = document.getElementById('typed');
+            const words = ['AI Engineer', 'LLM Agents', 'Backend APIs'];
+            if (typed) {
+                if (reduced) {
+                    typed.textContent = words.join(' · ');
+                } else {
+                    let w = 0, c = words[0].length, del = true;
+                    function tick() {
+                        const word = words[w];
+                        typed.textContent = word.slice(0, c);
+                        let delay = del ? 55 : 95;
+                        if (del) { c--; if (c < 0) { del = false; c = 0; w = (w + 1) % words.length; delay = 300; } }
+                        else { c++; if (c > words[w].length) { c = words[w].length; del = true; delay = 1700; } }
+                        setTimeout(tick, delay);
+                    }
+                    setTimeout(tick, 1600); // hold the first word, then start cycling
+                }
+            }
+
+            // Hero: slow drifting particles (paused when off-screen or tab hidden)
+            const cv = document.getElementById('hero-particles'), hero = document.getElementById('home');
+            if (cv && hero && !reduced) {
+                const cx = cv.getContext('2d'); let pts = [], vis = true, dpr = Math.min(devicePixelRatio || 1, 2);
+                const size = () => {
+                    cv.width = hero.clientWidth * dpr; cv.height = hero.clientHeight * dpr;
+                    const n = hero.clientWidth < 640 ? 18 : 36;
+                    pts = Array.from({ length: n }, () => ({ x: Math.random() * cv.width, y: Math.random() * cv.height, r: (1 + Math.random() * 2.2) * dpr, vx: (Math.random() - .5) * .25 * dpr, vy: (-0.08 - Math.random() * .2) * dpr, a: .25 + Math.random() * .45 }));
+                };
+                size(); window.addEventListener('resize', size);
+                new IntersectionObserver(es => vis = es[0].isIntersecting).observe(hero);
+                (function loop() {
+                    if (vis && !document.hidden) {
+                        cx.clearRect(0, 0, cv.width, cv.height);
+                        const dark = document.documentElement.classList.contains('dark');
+                        pts.forEach(p => {
+                            p.x += p.vx; p.y += p.vy;
+                            if (p.y < -5) { p.y = cv.height + 5; p.x = Math.random() * cv.width; }
+                            if (p.x < -5) p.x = cv.width + 5; else if (p.x > cv.width + 5) p.x = -5;
+                            cx.fillStyle = (dark ? 'rgba(147,197,253,' : 'rgba(59,130,246,') + (dark ? p.a * .8 : p.a * .55) + ')';
+                            cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, Math.PI * 2); cx.fill();
+                        });
+                    }
+                    requestAnimationFrame(loop);
+                })();
+            }
+
+            // Projects: 3D tilt (fine pointers only)
+            if (fine && !reduced) {
+                document.querySelectorAll('.tilt-card').forEach(card => {
+                    let raf = 0;
+                    card.addEventListener('pointermove', e => {
+                        if (raf) return;
+                        raf = requestAnimationFrame(() => {
+                            raf = 0;
+                            const r = card.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+                            card.style.setProperty('--ry', ((px - .5) * 10).toFixed(2) + 'deg');
+                            card.style.setProperty('--rx', ((.5 - py) * 8).toFixed(2) + 'deg');
+                            card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+                            card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+                        });
+                    });
+                    card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+                });
+            }
         })();
     </script>
 </body>
