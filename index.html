@@ -112,13 +112,15 @@
         @keyframes caretBlink { 50% { opacity: 0; } }
         .tabular-nums { font-variant-numeric: tabular-nums; }
 
-        /* Experience timeline */
-        #tl-line { transform: scaleY(1); }
-        .js #tl-line { transform: scaleY(0); }
-        .js .tl-item { opacity: 0; transform: translateX(36px); transition: opacity .6s ease, transform .6s ease; }
-        .js .tl-item.in { opacity: 1; transform: none; }
-        .js .tl-item .tl-dot { transform: scale(0); transition: transform .4s ease .25s; }
-        .js .tl-item.in .tl-dot { transform: scale(1); }
+        /* Experience: company tabs */
+        #exp-tabs { position: relative; scrollbar-width: none; }
+        #exp-tabs::-webkit-scrollbar { display: none; }
+        .exp-ind { position: absolute; left: 0; top: 0; z-index: 0; border-radius: 9999px; pointer-events: none; background: linear-gradient(180deg, #3b82f6, #10b981); transition: transform .35s cubic-bezier(.4,0,.2,1), width .35s cubic-bezier(.4,0,.2,1), height .35s cubic-bezier(.4,0,.2,1); }
+        .exp-tab { position: relative; z-index: 1; transition: background-color .2s ease, color .2s ease; }
+        .exp-tab[aria-selected="true"] { background-color: rgba(59,130,246,.10); }
+        .dark .exp-tab[aria-selected="true"] { background-color: rgba(59,130,246,.16); }
+        .exp-panel.panel-in { animation: expPanelIn .35s ease both; }
+        @keyframes expPanelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
         /* Projects: 3D tilt + glow + image zoom */
         .project-card.tilt-card { position: relative; transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .2s ease-out, box-shadow .3s ease; will-change: transform; }
@@ -142,12 +144,11 @@
         @media (prefers-reduced-motion: reduce) {
             .hero-glow { animation: none; }
             .typed-caret { animation: none; display: none; }
-            .js #tl-line { transform: scaleY(1); }
-            .js .tl-item { opacity: 1; transform: none; transition: none; }
-            .js .tl-item .tl-dot { transform: none; transition: none; }
             .project-card.tilt-card, .project-card.tilt-card:hover { transform: none; }
             .tilt-card:hover .proj-media > * { transform: none; }
             .cert-card::before { display: none; }
+            .exp-ind { transition: none; }
+            .exp-panel.panel-in { animation: none; }
         }
 
         /* Skills: 3D ring carousel */
@@ -367,17 +368,31 @@
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Experience</span></h2>
 
-            <div id="tl" class="relative max-w-4xl mx-auto border-l-2 border-primary-light/15 dark:border-primary-dark/20 ml-2 md:mx-auto">
-                <div id="tl-line" class="absolute -left-[2px] top-0 w-[2px] h-full origin-top bg-gradient-to-b from-primary-light to-secondary-light" aria-hidden="true"></div>
-
-                <!-- omniXM -->
-                <div class="tl-item relative pl-8 md:pl-10 pb-10">
-                    <span class="tl-dot absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
-                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-[17rem_1fr] gap-6">
+                <div id="exp-tabs" role="tablist" aria-label="Work experience" aria-orientation="vertical" class="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
+                    <span id="exp-ind" class="exp-ind" aria-hidden="true"></span>
+                    <button type="button" role="tab" id="exp-tab-0" aria-controls="exp-panel-0" aria-selected="true" tabindex="0"
+                            class="exp-tab text-left px-5 py-4 rounded-lg flex-shrink-0 md:flex-shrink md:w-full whitespace-nowrap md:whitespace-normal hover:bg-primary-light/10 dark:hover:bg-primary-light/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-light">
+                        <span class="block font-semibold">omniXM</span>
+                        <span class="block text-xs text-gray-500 dark:text-gray-400 mt-0.5">August 2026 – Present</span>
+                    </button>
+                    <button type="button" role="tab" id="exp-tab-1" aria-controls="exp-panel-1" aria-selected="false" tabindex="-1"
+                            class="exp-tab text-left px-5 py-4 rounded-lg flex-shrink-0 md:flex-shrink md:w-full whitespace-nowrap md:whitespace-normal hover:bg-primary-light/10 dark:hover:bg-primary-light/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-light">
+                        <span class="block font-semibold">IIT Kharagpur</span>
+                        <span class="block text-xs text-gray-500 dark:text-gray-400 mt-0.5">August 2026 – September 2026</span>
+                    </button>
+                    <button type="button" role="tab" id="exp-tab-2" aria-controls="exp-panel-2" aria-selected="false" tabindex="-1"
+                            class="exp-tab text-left px-5 py-4 rounded-lg flex-shrink-0 md:flex-shrink md:w-full whitespace-nowrap md:whitespace-normal hover:bg-primary-light/10 dark:hover:bg-primary-light/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-light">
+                        <span class="block font-semibold">LogiXair</span>
+                        <span class="block text-xs text-gray-500 dark:text-gray-400 mt-0.5">May 2025 – July 2025</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8 min-w-0">
+                    <div role="tabpanel" id="exp-panel-0" aria-labelledby="exp-tab-0" tabindex="0" class="exp-panel focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-light rounded">
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
                             <div>
-                                <h3 class="text-xl font-semibold">Trainee Engineer Intern</h3>
-                                <p class="text-primary-light dark:text-blue-400 font-medium">omniXM</p>
+                                <h3 class="text-2xl font-semibold">Trainee Engineer Intern</h3>
+                                <p class="text-primary-dark dark:text-blue-400 font-medium">omniXM</p>
                             </div>
                             <div class="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0 md:text-right">
                                 <p><i class="far fa-calendar-alt mr-1"></i>August 2026 – Present</p>
@@ -385,22 +400,18 @@
                             </div>
                         </div>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">Backend and AI engineer on the engineering team, building APIs and AI-integrated products in Python and FastAPI.</p>
-                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Optimised a production labelling API (self-hosted Qwen3-8B to GPT-5-nano): load-tested at 983 req/min with ~10x lower latency and a sharply lower projected cost.</span></li>
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Raised topic classification accuracy from 58.5% to 87.3% on a reviewer-labelled set.</span></li>
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Built and deployed an end-to-end product on Azure, and an advanced RAG knowledge system.</span></li>
+                        <div class="flex flex-wrap gap-2 mb-5"><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">983 req/min load-tested</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">~10x lower latency</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">58.5% → 87.3% accuracy</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">Azure</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">RAG</span></div>
+                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Optimised a production labelling API (self-hosted Qwen3-8B to GPT-5-nano): load-tested at 983 req/min with ~10x lower latency and a sharply lower projected cost.</span></li>
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Raised topic classification accuracy from 58.5% to 87.3% on a reviewer-labelled set.</span></li>
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Built and deployed an end-to-end product on Azure, and an advanced RAG knowledge system.</span></li>
                         </ul>
                     </div>
-                </div>
-
-                <!-- Indian Institute of Technology, Kharagpur -->
-                <div class="tl-item relative pl-8 md:pl-10 pb-10">
-                    <span class="tl-dot absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
-                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                    <div role="tabpanel" id="exp-panel-1" aria-labelledby="exp-tab-1" tabindex="0" class="exp-panel focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-light rounded" hidden>
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
                             <div>
-                                <h3 class="text-xl font-semibold">Research Intern — LLM &amp; Data Agents</h3>
-                                <p class="text-primary-light dark:text-blue-400 font-medium">Indian Institute of Technology, Kharagpur</p>
+                                <h3 class="text-2xl font-semibold">Research Intern — LLM &amp; Data Agents</h3>
+                                <p class="text-primary-dark dark:text-blue-400 font-medium">Indian Institute of Technology, Kharagpur</p>
                             </div>
                             <div class="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0 md:text-right">
                                 <p><i class="far fa-calendar-alt mr-1"></i>August 2026 – September 2026</p>
@@ -408,35 +419,31 @@
                             </div>
                         </div>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">Worked in the Department of Computer Science and Engineering on LLM-based data agents focused on reliable data selection, reasoning, and answer verification.</p>
-                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Diagnosed 13 false positives in an entity-resolution baseline into 5 distinct failure patterns and implemented targeted corrections, improving F1 from 0.8992 to 0.9333 and correcting 9 of the 13 errors.</span></li>
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Identified a sampling defect in a schema-matching evaluation pipeline that was testing only 3 of 900 true matches; rebuilt the sampling methodology before using the baseline results.</span></li>
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Reviewed 100+ papers from SIGMOD, VLDB, SIGIR, ICDE, and CIKM on data-agent reliability, applying a full-read vs. abstract-only verification standard to research claims.</span></li>
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Built a full-stack multi-agent knowledge assistant using FastAPI, Streamlit, ChromaDB, and local Llama 3.1 8B inference, with confidence-gated human review, as part of a timed AI-tool-restricted qualifying assessment.</span></li>
+                        <div class="flex flex-wrap gap-2 mb-5"><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">F1 0.8992 → 0.9333</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">9 of 13 errors corrected</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">3 of 900 matches defect found</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">100+ papers reviewed</span></div>
+                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Diagnosed 13 false positives in an entity-resolution baseline into 5 distinct failure patterns and implemented targeted corrections, improving F1 from 0.8992 to 0.9333 and correcting 9 of the 13 errors.</span></li>
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Identified a sampling defect in a schema-matching evaluation pipeline that was testing only 3 of 900 true matches; rebuilt the sampling methodology before using the baseline results.</span></li>
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Reviewed 100+ papers from SIGMOD, VLDB, SIGIR, ICDE, and CIKM on data-agent reliability, applying a full-read vs. abstract-only verification standard to research claims.</span></li>
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Built a full-stack multi-agent knowledge assistant using FastAPI, Streamlit, ChromaDB, and local Llama 3.1 8B inference, with confidence-gated human review, as part of a timed AI-tool-restricted qualifying assessment.</span></li>
                         </ul>
                     </div>
-                </div>
-
-                <!-- LogiXair -->
-                <div class="tl-item relative pl-8 md:pl-10 ">
-                    <span class="tl-dot absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
-                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                    <div role="tabpanel" id="exp-panel-2" aria-labelledby="exp-tab-2" tabindex="0" class="exp-panel focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-light rounded" hidden>
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
                             <div>
-                                <h3 class="text-xl font-semibold">Software &amp; ML Engineer Intern</h3>
-                                <p class="text-primary-light dark:text-blue-400 font-medium">LogiXair</p>
+                                <h3 class="text-2xl font-semibold">Software &amp; ML Engineer Intern</h3>
+                                <p class="text-primary-dark dark:text-blue-400 font-medium">LogiXair</p>
                             </div>
                             <div class="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0 md:text-right">
                                 <p><i class="far fa-calendar-alt mr-1"></i>May 2025 – July 2025</p>
                                 <p><i class="fas fa-map-marker-alt mr-1"></i>India</p>
                             </div>
                         </div>
-                        
-                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Built a real-time drone telemetry monitoring UI using HTML, JavaScript, and Three.js, streaming Webots simulation data at 50Hz with &lt;5ms latency — giving engineers live 3D visibility into VTOL flight behavior.</span></li>
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Developed an IMU sensor fusion subsystem using a Complementary Filter and trained ML models for BLDC motor fault detection, reducing position error by 52% and improving system stability by 18% vs. baseline.</span></li>
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Designed a bidirectional WebSocket data pipeline between the onboard drone controller and ground station, enabling real-time diagnostics with zero dropped telemetry packets during testing.</span></li>
-                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Containerized the full deployment with Docker and integrated CI/CD in an Agile workflow, cutting environment setup time by an estimated 70% and enabling consistent builds across dev and test.</span></li>
+                        <div class="flex flex-wrap gap-2 mb-5"><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">50 Hz, &lt;5 ms telemetry</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">52% lower position error</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">18% better stability</span><span class="px-3 py-1 rounded-full text-xs font-medium bg-primary-light/10 dark:bg-primary-dark/20 text-primary-dark dark:text-blue-300 border border-primary-light/20">~70% faster setup (est.)</span></div>
+                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Built a real-time drone telemetry monitoring UI using HTML, JavaScript, and Three.js, streaming Webots simulation data at 50Hz with &lt;5ms latency — giving engineers live 3D visibility into VTOL flight behavior.</span></li>
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Developed an IMU sensor fusion subsystem using a Complementary Filter and trained ML models for BLDC motor fault detection, reducing position error by 52% and improving system stability by 18% vs. baseline.</span></li>
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Designed a bidirectional WebSocket data pipeline between the onboard drone controller and ground station, enabling real-time diagnostics with zero dropped telemetry packets during testing.</span></li>
+                                <li class="flex items-start"><span class="text-primary-light dark:text-blue-400 mr-2 mt-0.5">→</span><span>Containerized the full deployment with Docker and integrated CI/CD in an Agile workflow, cutting environment setup time by an estimated 70% and enabling consistent builds across dev and test.</span></li>
                         </ul>
                     </div>
                 </div>
@@ -1143,8 +1150,6 @@
 
             // Scroll progress, timeline line, active nav (single rAF-throttled handler)
             const bar = document.getElementById('scroll-progress');
-            const tl = document.getElementById('tl');
-            const tlLine = document.getElementById('tl-line');
             const sections = ['home','about','experience','education','projects','certifications','publications','skills','contact']
                 .map(id => document.getElementById(id)).filter(Boolean);
             const navLinks = [...document.querySelectorAll('header a[href^="#"]')].filter(a => a.getAttribute('href') !== '#');
@@ -1153,10 +1158,6 @@
                 ticking = false;
                 const max = document.documentElement.scrollHeight - innerHeight;
                 bar.style.transform = 'scaleX(' + (max > 0 ? clamp(scrollY / max, 0, 1) : 0) + ')';
-                if (tl && tlLine && !reduced) {
-                    const r = tl.getBoundingClientRect();
-                    tlLine.style.transform = 'scaleY(' + clamp((innerHeight * 0.7 - r.top) / r.height, 0, 1).toFixed(3) + ')';
-                }
                 let id = sections[0] ? sections[0].id : '';
                 const y = scrollY + 140;
                 sections.forEach(sec => { if (sec.offsetTop <= y) id = sec.id; });
@@ -1175,14 +1176,59 @@
             window.addEventListener('resize', onScroll);
             update();
 
-            // Timeline cards slide in
-            const items = document.querySelectorAll('.tl-item');
-            if ('IntersectionObserver' in window && !reduced) {
-                const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.15 });
-                items.forEach(el => io.observe(el));
-            } else {
-                items.forEach(el => el.classList.add('in'));
-            }
+            // Experience tabs (WAI-ARIA tabs pattern: roving tabindex + arrow keys)
+            (function () {
+                const list = document.getElementById('exp-tabs'), ind = document.getElementById('exp-ind');
+                if (!list || !ind) return;
+                const tabs = [...list.querySelectorAll('[role="tab"]')];
+                const mq = window.matchMedia('(min-width: 768px)');
+                function moveIndicator(tab, animate) {
+                    if (!animate) { ind.style.transition = 'none'; }
+                    if (mq.matches) {
+                        ind.style.width = '4px'; ind.style.height = tab.offsetHeight + 'px';
+                        ind.style.transform = 'translate(0,' + tab.offsetTop + 'px)';
+                        ind.style.background = 'linear-gradient(180deg,#3b82f6,#10b981)';
+                    } else {
+                        ind.style.width = tab.offsetWidth + 'px'; ind.style.height = '3px';
+                        ind.style.transform = 'translate(' + tab.offsetLeft + 'px,' + (tab.offsetTop + tab.offsetHeight - 3) + 'px)';
+                        ind.style.background = 'linear-gradient(90deg,#3b82f6,#10b981)';
+                    }
+                    if (!animate) { ind.offsetWidth; ind.style.transition = ''; }
+                }
+                function select(tab, focus, animate) {
+                    tabs.forEach(t => {
+                        const on = t === tab;
+                        t.setAttribute('aria-selected', on ? 'true' : 'false');
+                        t.tabIndex = on ? 0 : -1;
+                        const panel = document.getElementById(t.getAttribute('aria-controls'));
+                        if (on) { panel.hidden = false; if (animate) { panel.classList.remove('panel-in'); void panel.offsetWidth; panel.classList.add('panel-in'); } }
+                        else { panel.hidden = true; panel.classList.remove('panel-in'); }
+                    });
+                    moveIndicator(tab, animate && !reduced);
+                    if (!mq.matches) {
+                        const target = tab.offsetLeft - (list.clientWidth - tab.offsetWidth) / 2;
+                        list.scrollTo({ left: target, behavior: reduced || !animate ? 'auto' : 'smooth' });
+                    }
+                    if (focus) tab.focus();
+                }
+                tabs.forEach((tab, i) => {
+                    tab.addEventListener('click', () => select(tab, false, true));
+                    tab.addEventListener('keydown', e => {
+                        const k = e.key; let n = -1;
+                        if (k === 'ArrowRight' || k === 'ArrowDown') n = (i + 1) % tabs.length;
+                        else if (k === 'ArrowLeft' || k === 'ArrowUp') n = (i - 1 + tabs.length) % tabs.length;
+                        else if (k === 'Home') n = 0;
+                        else if (k === 'End') n = tabs.length - 1;
+                        if (n < 0) return;
+                        e.preventDefault(); select(tabs[n], true, true);
+                    });
+                });
+                const sync = () => { list.setAttribute('aria-orientation', mq.matches ? 'vertical' : 'horizontal'); moveIndicator(tabs.find(t => t.getAttribute('aria-selected') === 'true'), false); };
+                mq.addEventListener('change', sync);
+                window.addEventListener('resize', sync);
+                window.addEventListener('load', sync);
+                sync();
+            })();
 
             // Count-up (final text already in the markup; animate only when JS + motion allowed)
             const counts = document.querySelectorAll('.count');
