@@ -92,6 +92,46 @@
             object-position: center 30%;
             transform: scale(1.2);
         }
+
+        /* Skills: 3D ring carousel */
+        .skills-stage {
+            position: relative; height: 380px; overflow: hidden; border-radius: 1.5rem;
+            background: radial-gradient(ellipse at 50% 45%, rgba(59,130,246,.16) 0%, rgba(16,185,129,.06) 40%, transparent 70%), #05070d;
+            border: 1px solid rgba(255,255,255,.08);
+            touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none;
+        }
+        .skills-stage.dragging { cursor: grabbing; }
+        .skills-orbs { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .55; pointer-events: none; }
+        .skills-ring { position: absolute; inset: 0; perspective: 1800px; }
+        .skills-ring-inner { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(8deg); }
+        .skill-tile { position: absolute; left: 50%; top: 50%; width: 150px; will-change: transform, opacity, filter; }
+        .skill-card {
+            display: flex; flex-direction: column; align-items: center; gap: .85rem;
+            padding: 1.25rem .5rem 1rem; border-radius: 1.25rem;
+            border: 1px solid rgba(255,255,255,.14);
+            background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.14) 0%, transparent 60%), rgba(255,255,255,.04);
+            box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.12);
+        }
+        .skill-logo {
+            width: 64px; height: 64px; padding: 10px; border-radius: .85rem; background: #fff;
+            display: flex; align-items: center; justify-content: center; color: #1f2937; font-size: 1.9rem;
+        }
+        .skill-logo img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+        .skill-label { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,.85); text-align: center; }
+        .skill-reflect {
+            height: 56px; overflow: hidden; margin-top: .4rem; transform: scaleY(-1); opacity: .25;
+            -webkit-mask-image: linear-gradient(transparent 0%, black 100%); mask-image: linear-gradient(transparent 0%, black 100%);
+        }
+        .skill-tab { transition: all .25s ease; }
+        .skill-tab.active { background-image: linear-gradient(45deg, #3b82f6, #10b981); color: #fff; border-color: transparent; }
+        @media (max-width: 639px) {
+            .skills-stage { height: 320px; }
+            .skill-tile { width: 104px; }
+            .skill-card { padding: .9rem .25rem .75rem; gap: .6rem; }
+            .skill-logo { width: 48px; height: 48px; padding: 8px; font-size: 1.4rem; }
+            .skill-label { font-size: .58rem; letter-spacing: .12em; }
+            .skill-reflect { height: 40px; }
+        }
     </style>
 </head>
 <body class="light bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
@@ -397,191 +437,107 @@
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Projects</span></h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- New project - Advanced RAG Knowledge System -->
-                <!-- TODO: add repo/demo link for Advanced RAG Knowledge System (omniXM work - may be private). When a repo/demo URL exists, wrap this card in <a href="URL" target="_blank" class="... block"> like the cards below and replace the "coming soon" line with "View on GitHub". -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl block">
-                    <div class="h-48 flex items-center justify-center bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Think9 Multi-Agent Knowledge Assistant -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
+                    <div class="h-48 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-indigo-500 to-primary-light dark:from-indigo-700 dark:to-primary-dark">
                         <i class="fas fa-brain text-6xl text-white/90"></i>
+                        <span class="text-white/80 text-xs tracking-[0.25em] uppercase font-semibold">Multi-agent RAG</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Advanced RAG Knowledge System</h3>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-semibold mb-2">Think9 Multi-Agent Knowledge Assistant</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Advanced retrieval-augmented generation (RAG) knowledge system built at omniXM, alongside an end-to-end product deployed on Azure.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">RAG</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">LLM</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Azure</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <span class="text-gray-400 dark:text-gray-500 text-sm">Source code coming soon</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- New project - Multi-Agent Knowledge Assistant -->
-                <!-- TODO: add repo link for Multi-Agent Knowledge Assistant. When a repo/demo URL exists, wrap this card in <a href="URL" target="_blank" class="... block"> like the cards below and replace the "coming soon" line with "View on GitHub". -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl block">
-                    <div class="h-48 flex items-center justify-center bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark">
-                        <i class="fas fa-robot text-6xl text-white/90"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Multi-Agent Knowledge Assistant</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Full-stack multi-agent knowledge assistant with local Llama 3.1 8B inference and confidence-gated human review, built during a timed, AI-tool-restricted qualifying assessment at IIT Kharagpur.
+                            Multi-agent RAG assistant: specialist Legal, Brand and Operations agents retrieve evidence from ChromaDB and Llama 3.1 8B (via Ollama) drafts the answer. A confidence gate (threshold 80) auto-approves it or sends it to human review, and approved decisions are stored as reusable memory.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">FastAPI</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Streamlit</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">ChromaDB</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Llama 3.1 8B</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Ollama</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Streamlit</span>
                         </div>
-                        <div class="flex space-x-3">
-                            <span class="text-gray-400 dark:text-gray-500 text-sm">Source code coming soon</span>
+                        <p class="text-xs text-gray-400 dark:text-gray-500 mb-4">Working prototype, not a production system.</p>
+                        <div class="flex flex-wrap gap-3 mt-auto">
+                            <a href="https://github.com/Sumanth3036/Think9-Multi-Agent-Knowledge-Assistant" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition bg-primary-light dark:bg-primary-dark text-white hover:opacity-90"><i class="fab fa-github mr-2"></i>GitHub</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- New project - Fault-Tolerant Microservices -->
-                <!-- TODO: add repo link for Fault-Tolerant Microservices. When a repo/demo URL exists, wrap this card in <a href="URL" target="_blank" class="... block"> like the cards below and replace the "coming soon" line with "View on GitHub". -->
-                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl block">
-                    <div class="h-48 flex items-center justify-center bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark">
-                        <i class="fas fa-network-wired text-6xl text-white/90"></i>
+                <!-- Data Agent Reliability Evaluation -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
+                    <div class="h-48 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-violet-500 to-secondary-light dark:from-violet-700 dark:to-secondary-dark">
+                        <i class="fas fa-chart-line text-6xl text-white/90"></i>
+                        <span class="text-white/80 text-xs tracking-[0.25em] uppercase font-semibold">LLM agent evaluation</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Fault-Tolerant Microservices</h3>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-semibold mb-2">Data Agent Reliability Evaluation</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Fault-tolerant microservices using RabbitMQ and Redis, delivering 40% higher throughput.
+                            Evaluates LLM agents on entity resolution and schema matching. On 175 Abt-Buy product pairs, the improved agent raised F1 from 89.92% to 93.33% and precision from 81.69% to 90.32%, correcting 9 of 13 false positives. Baseline schema matching on 320 column pairs scored 86.32% F1.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">RabbitMQ</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Redis</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Microservices</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Python</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">LLM Evaluation</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Entity Resolution</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Schema Matching</span>
                         </div>
-                        <div class="flex space-x-3">
-                            <span class="text-gray-400 dark:text-gray-500 text-sm">Source code coming soon</span>
+                        <p class="text-xs text-gray-400 dark:text-gray-500 mb-4">Independent research pilot; the improved schema-matching run is incomplete and excluded from the results.</p>
+                        <div class="flex flex-wrap gap-3 mt-auto">
+                            <a href="https://github.com/Sumanth3036/Data-Agent-Reliability-Evaluation" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition bg-primary-light dark:bg-primary-dark text-white hover:opacity-90"><i class="fab fa-github mr-2"></i>GitHub</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 1 - secure-chat-app -->
-                <a href="https://github.com/Sumanth3036/secure-chat-app" target="_blank" class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl cursor-pointer block">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                             alt="secure-chat-app" 
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                <!-- Distributed Traffic Surveillance System -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
+                    <div class="h-48 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-sky-500 to-emerald-500 dark:from-sky-700 dark:to-emerald-700">
+                        <i class="fas fa-video text-6xl text-white/90"></i>
+                        <span class="text-white/80 text-xs tracking-[0.25em] uppercase font-semibold">Fault-tolerant pipeline</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">secure-chat-app</h3>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-semibold mb-2">Distributed Traffic Surveillance System</h3>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            FastAPI-based encrypted chat platform with AES-256 encryption, OTP onboarding, JWT sessions, and ML phishing detection (CatBoost, 96%+ accuracy). Features real-time encrypted chat with Docker & Render deployment.
+                            Fault-tolerant distributed system that detects vehicles (YOLOv11), reads license plates (PaddleOCR) and flags helmet violations (YOLOv9n) in images and video. Independent workers pull tasks from RabbitMQ and write results to Redis, so tasks for a crashed worker wait in the queue and partial results are still returned. The API uses key auth and a 10 requests/min Redis rate limit.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">FastAPI</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">ML</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Docker</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">RabbitMQ</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Redis</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">YOLO</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Docker Compose</span>
+                        </div>
+                        <p class="text-xs text-gray-400 dark:text-gray-500 mb-4">Prototype, tested locally with Docker Compose.</p>
+                        <div class="flex flex-wrap gap-3 mt-auto">
+                            <a href="https://github.com/Sumanth3036/Distributed-Traffic-Surveillance-System" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition bg-primary-light dark:bg-primary-dark text-white hover:opacity-90"><i class="fab fa-github mr-2"></i>GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CipherTalk (secure-chat-app) -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl flex flex-col">
+                    <div class="h-48 overflow-hidden bg-gray-900">
+                        <img src="assets/ciphertalk-chat.jpg"
+                             alt="CipherTalk chat screen showing an AES-256 encrypted message"
+                             loading="lazy"
+                             class="w-full h-full object-cover object-top transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-semibold mb-2">CipherTalk (secure-chat-app)</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            FastAPI secure chat app with AES-256 encryption, OTP-backed signup and password reset, JWT sessions, and ML plus rule-based phishing detection (CatBoost, about 96.7% accuracy/F1, under 10 ms inference). Ships with Docker and Render deployment.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">FastAPI</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">AES-256</span>
                             <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">JWT</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">CatBoost</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Docker</span>
                         </div>
-                        <div class="flex space-x-3">
-                            <span class="text-primary-light dark:text-primary-dark">View on GitHub <i class="fab fa-github ml-1"></i></span>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Project 2 - AI Code Compiler -->
-                <a href="https://github.com/Sumanth3036/Ai-code-compiler-" target="_blank" class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl cursor-pointer block">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                             alt="AI Code Compiler" 
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">AI Code Compiler</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            AI-powered online compiler supporting Python, JavaScript, C++, and Java. Features real-time syntax help, error explanations, and coding challenges.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">React</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Node.js</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">AI</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <span class="text-primary-light dark:text-primary-dark">View on GitHub <i class="fab fa-github ml-1"></i></span>
+                        <div class="flex flex-wrap gap-3 mt-auto">
+                            <a href="https://ciphertalk-j7gk.onrender.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition bg-primary-light dark:bg-primary-dark text-white hover:opacity-90"><i class="fas fa-external-link-alt mr-2"></i>Live Demo</a>
+                            <a href="https://github.com/Sumanth3036/secure-chat-app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fab fa-github mr-2"></i>GitHub</a>
                         </div>
                     </div>
-                </a>
-                
-                <!-- Project 3 - SafeRoute -->
-                <a href="https://github.com/Sumanth3036/Saferoute-Multi-Modal-Optimization-for-Crisis-Management-and-Evacuation" target="_blank" class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl cursor-pointer block">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" 
-                             alt="SafeRoute" 
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">SafeRoute – Crisis Management & Evacuation</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Disaster prediction system for floods & earthquakes using ML models with A*, Dijkstra, and Floyd-Warshall routing algorithms. Features real-time alerts, GPS integration, and map-based UI. Presented at IEEE ICSSES 2025.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">ML</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Algorithms</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">React</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <span class="text-primary-light dark:text-primary-dark">View on GitHub <i class="fab fa-github ml-1"></i></span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Project 4 - Drone Simulation -->
-                <a href="https://github.com/Sumanth3036/Intelligent-Drone-Control-Platform" target="_blank" class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl cursor-pointer block">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                             alt="Drone Simulation" 
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Drone Simulation & ML Control System</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Webots-based drone simulation with ML-driven orientation prediction. Features real-time telemetry via WebSocket and live monitoring web dashboard using HTML, JavaScript, and Three.js. Built IMU subsystem using Complementary Filter and ML models for BLDC motor fault detection.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Webots</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">ML</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Three.js</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">WebSocket</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <span class="text-primary-light dark:text-primary-dark">View on GitHub <i class="fab fa-github ml-1"></i></span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Project 5 - IPL Player Performance Predictor -->
-                <a href="https://github.com/Sumanth3036/IPL-PLAYER-PREDICTION-SYSTEM" target="_blank" class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl cursor-pointer block">
-                    <div class="h-48 overflow-hidden">
-                        <img src="ipllogo.webp" 
-                             alt="IPL Player Performance Predictor" 
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">IPL Player Performance Predictor</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Web application built with Streamlit that predicts an IPL player's batting performance across Powerplay, Middle Overs, and Death Overs. Uses XGBoost regression model trained on historical IPL data to forecast runs scored in each phase with performance visualization.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Streamlit</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">XGBoost</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">ML</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Python</span>
-                        </div>
-                        <div class="flex space-x-3">
-                            <span class="text-primary-light dark:text-primary-dark">View on GitHub <i class="fab fa-github ml-1"></i></span>
-                        </div>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
@@ -799,111 +755,30 @@
     <!-- Skills Section -->
     <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Skills</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <!-- Languages -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-                            <i class="fas fa-code text-primary-light dark:text-primary-dark"></i>
-                        </div>
-                        <h3 class="font-semibold">Languages</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">JavaScript</span>
-                    </div>
-                </div>
+            <div class="relative mb-10">
+                <p class="hidden md:block absolute left-1/2 -translate-x-1/2 -top-8 text-8xl font-black uppercase tracking-tighter text-gray-900/5 dark:text-white/5 select-none pointer-events-none" aria-hidden="true">Skills</p>
+                <h2 class="relative text-3xl font-bold text-center">My <span class="gradient-text">Skills</span></h2>
+                <div class="w-24 h-1 mx-auto mt-4 rounded-full bg-gradient-to-r from-primary-light to-secondary-light"></div>
+            </div>
 
-                <!-- AI/ML &amp; LLM -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
-                            <i class="fas fa-brain text-secondary-light dark:text-secondary-dark"></i>
-                        </div>
-                        <h3 class="font-semibold">AI/ML &amp; LLM</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">LLMs</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">RAG</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Agents</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">ChromaDB</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">scikit-learn</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">XGBoost</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">CatBoost</span>
-                    </div>
-                </div>
+            <!-- Category tabs -->
+            <div id="skill-tabs" class="flex flex-wrap justify-center gap-2 mb-6" role="tablist" aria-label="Skill categories"></div>
 
-                <!-- Backend -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-                            <i class="fas fa-server text-primary-light dark:text-primary-dark"></i>
-                        </div>
-                        <h3 class="font-semibold">Backend</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">FastAPI</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">REST APIs</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">WebSocket</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">SQLAlchemy</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">RabbitMQ</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Redis</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Node.js</span>
-                    </div>
-                </div>
+            <!-- 3D ring carousel (built by script below). Drag or swipe to rotate; hover to pause. -->
+            <div id="skills-stage" class="skills-stage max-w-6xl mx-auto" aria-hidden="true">
+                <canvas id="skills-orbs" class="skills-orbs"></canvas>
+                <div class="skills-ring"><div id="skills-ring-inner" class="skills-ring-inner"></div></div>
+            </div>
+            <p class="text-center text-xs text-gray-500 dark:text-gray-400 mt-3">Drag to rotate · hover to pause</p>
 
-                <!-- Frontend -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
-                            <i class="fas fa-laptop-code text-secondary-light dark:text-secondary-dark"></i>
-                        </div>
-                        <h3 class="font-semibold">Frontend</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">React</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">JavaScript</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Three.js</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Streamlit</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">HTML/CSS</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Tailwind CSS</span>
-                    </div>
-                </div>
-
-                <!-- Data &amp; Databases -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-                            <i class="fas fa-database text-primary-light dark:text-primary-dark"></i>
-                        </div>
-                        <h3 class="font-semibold">Data &amp; Databases</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">MySQL</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">MongoDB</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">SQL</span>
-                    </div>
-                </div>
-
-                <!-- Cloud &amp; DevOps -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
-                            <i class="fas fa-cloud text-secondary-light dark:text-secondary-dark"></i>
-                        </div>
-                        <h3 class="font-semibold">Cloud &amp; DevOps</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Azure</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">AWS</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Docker</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">CI/CD</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Git</span>
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Linux</span>
-                    </div>
-                </div>
+            <!-- Accessible / no-JS list of the same skills -->
+            <div class="sr-only">
+                <h3>Languages</h3><p>Python, JavaScript</p>
+                <h3>AI/ML and LLM</h3><p>LLMs, RAG, Agents, ChromaDB, scikit-learn, XGBoost, CatBoost</p>
+                <h3>Backend</h3><p>FastAPI, REST APIs, WebSocket, SQLAlchemy, RabbitMQ, Redis, Node.js</p>
+                <h3>Frontend</h3><p>React, JavaScript, Three.js, Streamlit, HTML/CSS, Tailwind CSS</p>
+                <h3>Data and Databases</h3><p>MySQL, MongoDB, SQL</p>
+                <h3>Cloud and DevOps</h3><p>Azure, AWS, Docker, CI/CD, Git, Linux</p>
             </div>
         </div>
     </section>
@@ -1082,6 +957,118 @@
         window.addEventListener('scroll', animateOnScroll);
         // Trigger once on page load
         window.addEventListener('load', animateOnScroll);
+
+        // Skills: 3D ring carousel (inspired by a coverflow-style tech stack showcase)
+        (function () {
+            const D = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/';
+            const dv = n => { const [a, v] = n.split(':'); return D + a + '/' + a + '-' + (v || 'original') + '.svg'; };
+            // [label, devicon name | null, Font Awesome fallback class]
+            const GROUPS = {
+                'Languages': [['Python','python'],['JavaScript','javascript']],
+                'AI/ML & LLM': [['LLMs',null,'fa-brain'],['RAG',null,'fa-magnifying-glass'],['Agents',null,'fa-robot'],['ChromaDB',null,'fa-database'],['scikit-learn','scikitlearn'],['XGBoost',null,'fa-tree'],['CatBoost',null,'fa-cube']],
+                'Backend': [['FastAPI','fastapi'],['REST APIs',null,'fa-plug'],['WebSocket',null,'fa-bolt'],['SQLAlchemy','sqlalchemy'],['RabbitMQ','rabbitmq'],['Redis','redis'],['Node.js','nodejs']],
+                'Frontend': [['React','react'],['JavaScript','javascript'],['Three.js','threejs'],['Streamlit','streamlit'],['HTML','html5'],['CSS','css3'],['Tailwind','tailwindcss']],
+                'Data & DB': [['MySQL','mysql'],['MongoDB','mongodb'],['SQL',null,'fa-database']],
+                'Cloud & DevOps': [['Azure','azure'],['AWS','amazonwebservices:original-wordmark'],['Docker','docker'],['CI/CD','githubactions'],['Git','git'],['Linux','linux']]
+            };
+            const all = []; const seen = new Set();
+            Object.values(GROUPS).forEach(g => g.forEach(it => { if (!seen.has(it[0])) { seen.add(it[0]); all.push(it); } }));
+            const TABS = Object.assign({ 'All': all }, GROUPS);
+
+            const stage = document.getElementById('skills-stage');
+            const inner = document.getElementById('skills-ring-inner');
+            const tabsEl = document.getElementById('skill-tabs');
+            if (!stage || !inner || !tabsEl) return;
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            let tiles = [], angle = 0, vel = 0.12, paused = false, visible = false, dragging = false, lastX = 0, lastT = 0;
+
+            function logoHTML(it) {
+                return it[1]
+                    ? '<img src="' + dv(it[1]) + '" alt="" loading="lazy">'
+                    : '<i class="fas ' + it[2] + '"></i>';
+            }
+            function build(name) {
+                inner.innerHTML = ''; tiles = [];
+                TABS[name].forEach(it => {
+                    const el = document.createElement('div');
+                    el.className = 'skill-tile';
+                    const card = '<div class="skill-card"><div class="skill-logo">' + logoHTML(it) + '</div><span class="skill-label">' + it[0] + '</span></div>';
+                    el.innerHTML = card + '<div class="skill-reflect" aria-hidden="true">' + card + '</div>';
+                    inner.appendChild(el); tiles.push(el);
+                });
+                render();
+            }
+            function render() {
+                const n = tiles.length; if (!n) return;
+                const w = tiles[0].offsetWidth || 150;
+                const R = Math.max(n * (w + 28) / (2 * Math.PI), w * 2.3);
+                const depth = Math.min(R, 320), ty = stage.clientWidth < 640 ? -42 : -58;
+                tiles.forEach((el, i) => {
+                    const th = (angle + i * 360 / n) * Math.PI / 180;
+                    const c = Math.cos(th), sn = Math.sin(th), t = (c + 1) / 2;
+                    el.style.transform = 'translateX(' + (sn * R).toFixed(1) + 'px) translateZ(' + (c * depth).toFixed(1) + 'px) translate(-50%,' + ty + '%) rotateY(' + (-sn * 28).toFixed(1) + 'deg) scale(' + (0.6 + 0.45 * t).toFixed(3) + ')';
+                    el.style.opacity = (0.12 + 0.88 * Math.pow(t, 1.3)).toFixed(3);
+                    el.style.filter = 'blur(' + ((1 - t) * 3).toFixed(1) + 'px)';
+                    el.style.zIndex = Math.round(t * 100);
+                });
+            }
+            function frame() {
+                if (visible) {
+                    if (!paused && !dragging && !reduced) angle += vel;
+                    render();
+                    drawOrbs();
+                }
+                requestAnimationFrame(frame);
+            }
+
+            // Tabs
+            Object.keys(TABS).forEach((name, idx) => {
+                const b = document.createElement('button');
+                b.type = 'button'; b.textContent = name; b.setAttribute('role', 'tab');
+                b.className = 'skill-tab px-4 py-1.5 rounded-full text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 hover:border-primary-light' + (idx === 0 ? ' active' : '');
+                b.addEventListener('click', () => {
+                    tabsEl.querySelectorAll('.skill-tab').forEach(x => x.classList.remove('active'));
+                    b.classList.add('active'); angle = 0; build(name);
+                });
+                tabsEl.appendChild(b);
+            });
+
+            // Interaction: hover pauses, drag / swipe rotates
+            stage.addEventListener('mouseenter', () => paused = true);
+            stage.addEventListener('mouseleave', () => paused = false);
+            stage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; stage.classList.add('dragging'); stage.setPointerCapture(e.pointerId); });
+            stage.addEventListener('pointermove', e => { if (!dragging) return; angle += (e.clientX - lastX) * 0.35; lastX = e.clientX; });
+            ['pointerup', 'pointercancel'].forEach(ev => stage.addEventListener(ev, () => { dragging = false; stage.classList.remove('dragging'); }));
+            new IntersectionObserver(es => { visible = es[0].isIntersecting; }, { threshold: 0.05 }).observe(stage);
+            window.addEventListener('resize', () => { sizeOrbs(); render(); });
+
+            // Soft glass orbs drifting behind the ring
+            const cv = document.getElementById('skills-orbs'), cx = cv.getContext('2d');
+            let orbs = [];
+            function sizeOrbs() {
+                cv.width = stage.clientWidth; cv.height = stage.clientHeight;
+                orbs = Array.from({ length: cv.width < 640 ? 7 : 12 }, () => ({
+                    x: Math.random() * cv.width, y: Math.random() * cv.height,
+                    r: 14 + Math.random() * 30, vx: (Math.random() - .5) * .4, vy: (Math.random() - .5) * .4,
+                    h: Math.random() < .5 ? 217 : 160
+                }));
+            }
+            function drawOrbs() {
+                cx.clearRect(0, 0, cv.width, cv.height);
+                orbs.forEach(o => {
+                    if (!reduced) {
+                        o.x += o.vx; o.y += o.vy;
+                        if (o.x < o.r || o.x > cv.width - o.r) o.vx *= -1;
+                        if (o.y < o.r || o.y > cv.height - o.r) o.vy *= -1;
+                    }
+                    const g = cx.createRadialGradient(o.x - o.r * .35, o.y - o.r * .35, o.r * .1, o.x, o.y, o.r);
+                    g.addColorStop(0, 'hsla(' + o.h + ',90%,75%,.55)'); g.addColorStop(1, 'hsla(' + o.h + ',80%,40%,.05)');
+                    cx.fillStyle = g; cx.beginPath(); cx.arc(o.x, o.y, o.r, 0, Math.PI * 2); cx.fill();
+                });
+            }
+            sizeOrbs(); build('All'); frame();
+        })();
     </script>
 </body>
 </html>
