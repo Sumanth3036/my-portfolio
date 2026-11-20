@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ponugupati Sumanth | Web Developer & AI/ML Enthusiast</title>
+    <title>Sumanth Ponugupati | AI Engineer – LLM Agents, RAG &amp; Production ML APIs</title>
+    <meta name="description" content="Sumanth Ponugupati – AI Engineer building LLM agents, RAG systems and production ML APIs in Python and FastAPI. Trainee Engineer at omniXM, ex-Research Intern at IIT Kharagpur, 3 publications.">
+    <meta name="author" content="Sumanth Ponugupati">
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sumanth Ponugupati | AI Engineer – LLM Agents, RAG &amp; Production ML APIs">
+    <meta property="og:description" content="AI Engineer building LLM agents, RAG systems and production ML APIs in Python and FastAPI. Trainee Engineer at omniXM, ex-Research Intern at IIT Kharagpur.">
+    <meta property="og:url" content="https://sumanth3036.github.io/my-portfolio/">
+    <meta property="og:image" content="https://sumanth3036.github.io/my-portfolio/sumanthpic.jpeg">
+    <meta name="twitter:card" content="summary">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -92,14 +101,19 @@
             <nav class="flex items-center justify-between">
                 <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
                 
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden lg:flex space-x-5 xl:space-x-7 text-sm xl:text-base">
                     <a href="#home" class="nav-link">Home</a>
                     <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#education" class="nav-link">Education</a>
                     <a href="#projects" class="nav-link">Projects</a>
                     <a href="#certifications" class="nav-link">Certifications</a>
                     <a href="#publications" class="nav-link">Publications</a>
                     <a href="#skills" class="nav-link">Skills</a>
                     <a href="#contact" class="nav-link">Contact</a>
+                    <!-- TODO: uncomment once resume.pdf is added to the repo root
+                    <a href="resume.pdf" target="_blank" rel="noopener" class="nav-link font-semibold text-primary-light dark:text-primary-dark">Resume</a>
+                    -->
                 </div>
                 
                 <div class="flex items-center space-x-4">
@@ -108,7 +122,7 @@
                         <i class="fas fa-sun hidden dark:block"></i>
                     </button>
                     
-                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <button id="mobile-menu-button" class="lg:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
@@ -116,15 +130,20 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-gray-800 shadow-lg">
             <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#education" class="nav-link">Education</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#certifications" class="nav-link">Certifications</a>
                 <a href="#publications" class="nav-link">Publications</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#contact" class="nav-link">Contact</a>
+                <!-- TODO: uncomment once resume.pdf is added to the repo root
+                <a href="resume.pdf" target="_blank" rel="noopener" class="nav-link">Resume</a>
+                -->
             </div>
         </div>
     </header>
@@ -135,22 +154,28 @@
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
                     <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="gradient-text">Sumanth</span></h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Motivated Web Developer | Full-Stack & AI/ML Enthusiast</h2>
+                    <h2 class="text-xl md:text-2xl font-semibold mb-6">AI Engineer | LLM Agents, RAG &amp; Production ML APIs | Python, FastAPI</h2>
                     <p class="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-lg">
-I am a motivated software developer with a strong foundation in data structures, algorithms, and data-driven system design. I build clean, responsive, and secure web applications using the MERN stack, Python, and FastAPI, and work extensively with data analysis, visualization, and backend APIs. I actively integrate machine learning and NLP models into real-world applications, focusing on scalable solutions, actionable insights, and user-centric design.                    </p>
-                    <div class="flex space-x-4">
+                        I build backend systems, APIs and AI-integrated products. Trainee Engineer at omniXM, previously Research Intern at IIT Kharagpur, with 3 research publications.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
                         <a href="#contact" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
                             Contact Me
                         </a>
                         <a href="#projects" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                             View Work
                         </a>
+                        <!-- TODO: resume.pdf has not been provided yet. Add it to the repo root, then uncomment this button.
+                        <a href="resume.pdf" target="_blank" rel="noopener" class="px-6 py-3 border border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark rounded-lg hover:bg-primary-light/10 dark:hover:bg-primary-dark/10 transition-colors">
+                            <i class="fas fa-download mr-2 text-sm"></i>Resume
+                        </a>
+                        -->
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center animate-slide-up">
                     <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary-light dark:border-primary-dark">
                         <img src="sumanthpic.jpeg" 
-                             alt="Ponugupati Sumanth" 
+                             alt="Sumanth Ponugupati" 
                              class="w-full h-full object-cover profile-image">
                         <div class="absolute inset-0 bg-primary-light dark:bg-primary-dark opacity-10"></div>
                     </div>
@@ -164,49 +189,203 @@ I am a motivated software developer with a strong foundation in data structures,
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold mb-12 text-center">About <span class="gradient-text">Me</span></h2>
             
-            <div class="flex flex-col md:flex-row items-center">
+            <div class="flex flex-col md:flex-row items-start">
                 <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
                     <div class="w-64 h-64 rounded-lg overflow-hidden shadow-lg">
                         <img src="sumanthpic.jpeg" 
-                             alt="Ponugupati Sumanth" 
+                             alt="Sumanth Ponugupati" 
                              class="w-full h-full object-cover">
                     </div>
                 </div>
                 
                 <div class="md:w-2/3 md:pl-12">
                     <h3 class="text-2xl font-semibold mb-4">Who I Am</h3>
-                    <p class="mb-6 text-gray-600 dark:text-gray-300">
-                        I am a motivated web developer with a strong foundation in data structures, algorithms, and scalable web applications. My work focuses on building clean, responsive, user-focused, and secure systems. I specialize in the MERN stack, Python, and FastAPI, and I actively integrate machine learning and NLP models into real-world applications. I also emphasize security, automation, and optimization in my projects.
+                    <p class="mb-4 text-gray-600 dark:text-gray-300">
+                        I'm a software engineer with hands-on experience building and optimising backend systems, APIs, and data-driven products in Python and FastAPI, with additional depth in AI/ML. I also build fault-tolerant microservices (RabbitMQ, Redis, 40% higher throughput) and secure APIs (JWT, AES-256).
                     </p>
-                    
+                    <p class="mb-6 text-gray-600 dark:text-gray-300">
+                        I have three research publications, including IEEE ICSSES 2025, and I'm certified by Meta (Back-End Developer), IBM (AI Engineering), and AWS Academy. I'm open to Software Engineer, Backend, Full-Stack, and Data/ML roles.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm text-center">
+                            <p class="text-2xl font-bold gradient-text">983 req/min</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Load-tested production API (3.7x peak requirement), ~10x lower latency</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm text-center">
+                            <p class="text-2xl font-bold gradient-text">58.5% → 87.3%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Topic classification accuracy on a reviewer-labelled set</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm text-center">
+                            <p class="text-2xl font-bold gradient-text">0.8992 → 0.9333</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">F1 on an entity-resolution baseline</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm text-center">
+                            <p class="text-2xl font-bold gradient-text">52%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Lower position error with ML-based fault detection</p>
+                        </div>
+                    </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center mb-4">
+                            <div class="flex items-center mb-3">
                                 <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
-                                    <i class="fas fa-graduation-cap text-primary-light dark:text-primary-dark"></i>
+                                    <i class="fas fa-layer-group text-primary-light dark:text-primary-dark"></i>
                                 </div>
-                                <h4 class="font-semibold">Education</h4>
+                                <h4 class="font-semibold">Stack</h4>
                             </div>
-                            <p class="text-gray-600 dark:text-gray-300">
-                                B.Tech in Electronics and Computer Engineering<br>
-                                Amrita Vishwa Vidyapeetham, Bengaluru<br>
-                                CGPA: 6.89
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                Python, FastAPI, REST APIs, WebSocket, React, Docker, Azure, AWS, MySQL, MongoDB, Redis, CI/CD
                             </p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
+                                    <i class="fas fa-language text-secondary-light dark:text-secondary-dark"></i>
+                                </div>
+                                <h4 class="font-semibold">Languages</h4>
+                            </div>
+                            <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-1">
+                                <li><span class="font-medium">Telugu</span> — Native or bilingual</li>
+                                <li><span class="font-medium">English</span> — Professional working</li>
+                                <li><span class="font-medium">Hindi</span> — Limited working</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Experience</span></h2>
+
+            <div class="max-w-4xl mx-auto border-l-2 border-primary-light/40 dark:border-primary-dark/50 ml-2 md:mx-auto">
+
+                <!-- omniXM -->
+                <div class="relative pl-8 md:pl-10 pb-10">
+                    <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                            <div>
+                                <h3 class="text-xl font-semibold">Trainee Engineer Intern</h3>
+                                <p class="text-primary-light dark:text-blue-400 font-medium">omniXM</p>
+                            </div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0 md:text-right">
+                                <p><i class="far fa-calendar-alt mr-1"></i>August 2026 – Present</p>
+                                <p><i class="fas fa-map-marker-alt mr-1"></i>Pune City, Maharashtra, India</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Backend and AI engineer on the engineering team, building APIs and AI-integrated products in Python and FastAPI.</p>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Optimised a production labelling API (self-hosted Qwen3-8B to GPT-5-nano): load-tested at 983 req/min with ~10x lower latency and a sharply lower projected cost.</span></li>
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Raised topic classification accuracy from 58.5% to 87.3% on a reviewer-labelled set.</span></li>
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Built and deployed an end-to-end product on Azure, and an advanced RAG knowledge system.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Indian Institute of Technology, Kharagpur -->
+                <div class="relative pl-8 md:pl-10 pb-10">
+                    <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                            <div>
+                                <h3 class="text-xl font-semibold">Research Intern — LLM &amp; Data Agents</h3>
+                                <p class="text-primary-light dark:text-blue-400 font-medium">Indian Institute of Technology, Kharagpur</p>
+                            </div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0 md:text-right">
+                                <p><i class="far fa-calendar-alt mr-1"></i>August 2026 – September 2026</p>
+                                <p><i class="fas fa-map-marker-alt mr-1"></i>Kharagpur, West Bengal, India</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Worked in the Department of Computer Science and Engineering on LLM-based data agents focused on reliable data selection, reasoning, and answer verification.</p>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Diagnosed 13 false positives in an entity-resolution baseline into 5 distinct failure patterns and implemented targeted corrections, improving F1 from 0.8992 to 0.9333 and correcting 9 of the 13 errors.</span></li>
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Identified a sampling defect in a schema-matching evaluation pipeline that was testing only 3 of 900 true matches; rebuilt the sampling methodology before using the baseline results.</span></li>
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Reviewed 100+ papers from SIGMOD, VLDB, SIGIR, ICDE, and CIKM on data-agent reliability, applying a full-read vs. abstract-only verification standard to research claims.</span></li>
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Built a full-stack multi-agent knowledge assistant using FastAPI, Streamlit, ChromaDB, and local Llama 3.1 8B inference, with confidence-gated human review, as part of a timed AI-tool-restricted qualifying assessment.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- LogiXair -->
+                <div class="relative pl-8 md:pl-10 ">
+                    <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark ring-4 ring-gray-50 dark:ring-gray-900"></span>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8">
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
+                            <div>
+                                <h3 class="text-xl font-semibold">Software &amp; ML Engineer Intern</h3>
+                                <p class="text-primary-light dark:text-blue-400 font-medium">LogiXair</p>
+                            </div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0 md:text-right">
+                                <p><i class="far fa-calendar-alt mr-1"></i>May 2025 – July 2025</p>
+                                <p><i class="fas fa-map-marker-alt mr-1"></i>India</p>
+                            </div>
                         </div>
                         
-                        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center mb-4">
-                                <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
-                                    <i class="fas fa-briefcase text-secondary-light dark:text-secondary-dark"></i>
-                                </div>
-                                <h4 class="font-semibold">Experience</h4>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300">
-                                Predictive Maintenance Engineer Intern<br>
-                                Autonomous E-Mobility Lab & Logixair<br>
-                                May 2025 – July 2025
-                            </p>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Built a real-time drone telemetry monitoring UI using HTML, JavaScript, and Three.js, streaming Webots simulation data at 50Hz with &lt;5ms latency — giving engineers live 3D visibility into VTOL flight behavior.</span></li>
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Developed an IMU sensor fusion subsystem using a Complementary Filter and trained ML models for BLDC motor fault detection, reducing position error by 52% and improving system stability by 18% vs. baseline.</span></li>
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Designed a bidirectional WebSocket data pipeline between the onboard drone controller and ground station, enabling real-time diagnostics with zero dropped telemetry packets during testing.</span></li>
+                                    <li class="flex items-start"><span class="text-primary-light dark:text-primary-dark mr-2 mt-0.5">→</span><span>Containerized the full deployment with Docker and integrated CI/CD in an Agile workflow, cutting environment setup time by an estimated 70% and enabling consistent builds across dev and test.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Education</span></h2>
+
+            <div class="max-w-4xl mx-auto space-y-6">
+
+                <!-- Amrita Vishwa Vidyapeetham, Bengaluru -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow-sm p-6 flex items-start">
+                    <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4 flex-shrink-0">
+                        <i class="fas fa-graduation-cap text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row md:justify-between md:gap-4">
+                            <h3 class="text-lg font-semibold">Bachelor of Technology (B.Tech), Electronics and Computer Engineering</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 md:whitespace-nowrap md:flex-shrink-0"><i class="far fa-calendar-alt mr-1"></i>June 2022 – June 2026</p>
                         </div>
+                        <p class="text-primary-light dark:text-blue-400 font-medium">Amrita Vishwa Vidyapeetham, Bengaluru</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">CGPA: 6.89</p>
+                    </div>
+                </div>
+
+                <!-- Sri Chaitanya Junior College, Eluru -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow-sm p-6 flex items-start">
+                    <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4 flex-shrink-0">
+                        <i class="fas fa-school text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row md:justify-between md:gap-4">
+                            <h3 class="text-lg font-semibold">Intermediate (Class XII), M P C</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 md:whitespace-nowrap md:flex-shrink-0"><i class="far fa-calendar-alt mr-1"></i>April 2020 – June 2022</p>
+                        </div>
+                        <p class="text-primary-light dark:text-blue-400 font-medium">Sri Chaitanya Junior College, Eluru</p>
+                    </div>
+                </div>
+
+                <!-- National High School, Kaikalur -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow-sm p-6 flex items-start">
+                    <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4 flex-shrink-0">
+                        <i class="fas fa-school text-primary-light dark:text-primary-dark"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-col md:flex-row md:justify-between md:gap-4">
+                            <h3 class="text-lg font-semibold">Secondary School Certificate (Class X), General Studies</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 md:whitespace-nowrap md:flex-shrink-0"><i class="far fa-calendar-alt mr-1"></i>April 2020</p>
+                        </div>
+                        <p class="text-primary-light dark:text-blue-400 font-medium">National High School, Kaikalur</p>
                     </div>
                 </div>
             </div>
@@ -219,6 +398,73 @@ I am a motivated software developer with a strong foundation in data structures,
             <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Projects</span></h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- New project - Advanced RAG Knowledge System -->
+                <!-- TODO: add repo/demo link for Advanced RAG Knowledge System (omniXM work - may be private). When a repo/demo URL exists, wrap this card in <a href="URL" target="_blank" class="... block"> like the cards below and replace the "coming soon" line with "View on GitHub". -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl block">
+                    <div class="h-48 flex items-center justify-center bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark">
+                        <i class="fas fa-brain text-6xl text-white/90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Advanced RAG Knowledge System</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Advanced retrieval-augmented generation (RAG) knowledge system built at omniXM, alongside an end-to-end product deployed on Azure.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">RAG</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">LLM</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Azure</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-gray-400 dark:text-gray-500 text-sm">Source code coming soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New project - Multi-Agent Knowledge Assistant -->
+                <!-- TODO: add repo link for Multi-Agent Knowledge Assistant. When a repo/demo URL exists, wrap this card in <a href="URL" target="_blank" class="... block"> like the cards below and replace the "coming soon" line with "View on GitHub". -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl block">
+                    <div class="h-48 flex items-center justify-center bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark">
+                        <i class="fas fa-robot text-6xl text-white/90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Multi-Agent Knowledge Assistant</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Full-stack multi-agent knowledge assistant with local Llama 3.1 8B inference and confidence-gated human review, built during a timed, AI-tool-restricted qualifying assessment at IIT Kharagpur.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">FastAPI</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Streamlit</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">ChromaDB</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Llama 3.1 8B</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-gray-400 dark:text-gray-500 text-sm">Source code coming soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New project - Fault-Tolerant Microservices -->
+                <!-- TODO: add repo link for Fault-Tolerant Microservices. When a repo/demo URL exists, wrap this card in <a href="URL" target="_blank" class="... block"> like the cards below and replace the "coming soon" line with "View on GitHub". -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl block">
+                    <div class="h-48 flex items-center justify-center bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark">
+                        <i class="fas fa-network-wired text-6xl text-white/90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Fault-Tolerant Microservices</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Fault-tolerant microservices using RabbitMQ and Redis, delivering 40% higher throughput.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">RabbitMQ</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Redis</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Microservices</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-gray-400 dark:text-gray-500 text-sm">Source code coming soon</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Project 1 - secure-chat-app -->
                 <a href="https://github.com/Sumanth3036/secure-chat-app" target="_blank" class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl cursor-pointer block">
                     <div class="h-48 overflow-hidden">
@@ -427,6 +673,32 @@ I am a motivated software developer with a strong foundation in data structures,
                     </a>
                 </div>
 
+                <!-- Meta Back-End Developer -->
+                <!-- TODO (optional): add the issue date and a "View Credential" link when available (same markup as the IBM card below). -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fab fa-meta text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1">Meta Back-End Developer</h3>
+                    <p class="text-secondary-light dark:text-secondary-dark font-medium text-sm mb-1">Back-End Development</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Meta</p>
+                </div>
+
+                <!-- IBM AI Engineering (issue date not publicly readable from the Coursera page; add "Issued <Mon YYYY>" if desired) -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center project-card">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
+                        <i class="fas fa-microchip text-3xl text-secondary-light dark:text-secondary-dark"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1">IBM AI Engineering</h3>
+                    <p class="text-secondary-light dark:text-secondary-dark font-medium text-sm mb-1">Professional Certificate</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">IBM via Coursera</p>
+                    <a href="https://www.coursera.org/account/accomplishments/professional-cert/GXPVZQ5AN2KJ"
+                       target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center px-4 py-2 bg-secondary-light/10 dark:bg-secondary-dark/10 text-secondary-light dark:text-secondary-dark rounded-lg text-sm font-medium hover:bg-secondary-light/20 dark:hover:bg-secondary-dark/20 transition-colors">
+                        <i class="fas fa-external-link-alt mr-2 text-xs"></i> View Credential
+                    </a>
+                </div>
+
             </div>
         </div>
     </section>
@@ -515,10 +787,7 @@ I am a motivated software developer with a strong foundation in data structures,
                                 <p class="text-gray-600 dark:text-gray-300 mb-5">
                                     Research paper exploring AI and advanced technology applications for modernizing university placement ecosystems — improving efficiency, matching accuracy, and transparency in campus recruitment workflows. Published at ICRDICCT 2025.
                                 </p>
-                                <!-- No public link available; button disabled gracefully -->
-                                <!-- <span class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-lg text-sm font-medium cursor-default"> -->
-                                    <!-- <i class="fas fa-book-open mr-2 text-xs"></i> Link Coming Soon -->
-                                </span>
+                                <!-- No public link available yet. TODO: add a "Read Paper" link here when one exists. -->
                             </div>
                         </div>
                     </div>
@@ -533,92 +802,107 @@ I am a motivated software developer with a strong foundation in data structures,
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold mb-12 text-center">My <span class="gradient-text">Skills</span></h2>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- Skill 1 - Python -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-                        <i class="fab fa-python text-3xl text-primary-light dark:text-primary-dark"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Languages -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                            <i class="fas fa-code text-primary-light dark:text-primary-dark"></i>
+                        </div>
+                        <h3 class="font-semibold">Languages</h3>
                     </div>
-                    <h3 class="font-semibold mb-2">Python</h3>
-                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 90%"></div>
-                    </div>
-                </div>
-                
-                <!-- Skill 2 - JavaScript -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-                        <i class="fab fa-js text-3xl text-primary-light dark:text-primary-dark"></i>
-                    </div>
-                    <h3 class="font-semibold mb-2">JavaScript</h3>
-                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 90%"></div>
+                    <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Python</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">JavaScript</span>
                     </div>
                 </div>
-                
-                <!-- Skill 3 - React -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-                        <i class="fab fa-react text-3xl text-primary-light dark:text-primary-dark"></i>
+
+                <!-- AI/ML &amp; LLM -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
+                            <i class="fas fa-brain text-secondary-light dark:text-secondary-dark"></i>
+                        </div>
+                        <h3 class="font-semibold">AI/ML &amp; LLM</h3>
                     </div>
-                    <h3 class="font-semibold mb-2">React</h3>
-                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-                
-                <!-- Skill 4 - Node.js -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-primary-light/10 dark:bg-primary-dark/10 rounded-full">
-                        <i class="fab fa-node-js text-3xl text-primary-light dark:text-primary-dark"></i>
-                    </div>
-                    <h3 class="font-semibold mb-2">Node.js</h3>
-                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-primary-light dark:bg-primary-dark h-2.5 rounded-full" style="width: 85%"></div>
+                    <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">LLMs</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">RAG</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Agents</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">ChromaDB</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">scikit-learn</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">XGBoost</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">CatBoost</span>
                     </div>
                 </div>
-                
-                <!-- Skill 5 - MongoDB -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-                        <i class="fas fa-database text-3xl text-secondary-light dark:text-secondary-dark"></i>
+
+                <!-- Backend -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                            <i class="fas fa-server text-primary-light dark:text-primary-dark"></i>
+                        </div>
+                        <h3 class="font-semibold">Backend</h3>
                     </div>
-                    <h3 class="font-semibold mb-2">MongoDB</h3>
-                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-                
-                <!-- Skill 6 - FastAPI -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-                        <i class="fas fa-server text-3xl text-secondary-light dark:text-secondary-dark"></i>
-                    </div>
-                    <h3 class="font-semibold mb-2">FastAPI</h3>
-                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 85%"></div>
+                    <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">FastAPI</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">REST APIs</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">WebSocket</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">SQLAlchemy</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">RabbitMQ</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Redis</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Node.js</span>
                     </div>
                 </div>
-                
-                <!-- Skill 7 - ML/AI -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-                        <i class="fas fa-brain text-3xl text-secondary-light dark:text-secondary-dark"></i>
+
+                <!-- Frontend -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
+                            <i class="fas fa-laptop-code text-secondary-light dark:text-secondary-dark"></i>
+                        </div>
+                        <h3 class="font-semibold">Frontend</h3>
                     </div>
-                    <h3 class="font-semibold mb-2">ML/AI</h3>
-                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 80%"></div>
+                    <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Three.js</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Streamlit</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">HTML/CSS</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Tailwind CSS</span>
                     </div>
                 </div>
-                
-                <!-- Skill 8 - Docker -->
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-secondary-light/10 dark:bg-secondary-dark/10 rounded-full">
-                        <i class="fab fa-docker text-3xl text-secondary-light dark:text-secondary-dark"></i>
+
+                <!-- Data &amp; Databases -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 mr-4">
+                            <i class="fas fa-database text-primary-light dark:text-primary-dark"></i>
+                        </div>
+                        <h3 class="font-semibold">Data &amp; Databases</h3>
                     </div>
-                    <h3 class="font-semibold mb-2">Docker</h3>
-                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                        <div class="bg-secondary-light dark:bg-secondary-dark h-2.5 rounded-full" style="width: 75%"></div>
+                    <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">MySQL</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">MongoDB</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">SQL</span>
+                    </div>
+                </div>
+
+                <!-- Cloud &amp; DevOps -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-secondary-light/10 dark:bg-secondary-dark/10 mr-4">
+                            <i class="fas fa-cloud text-secondary-light dark:text-secondary-dark"></i>
+                        </div>
+                        <h3 class="font-semibold">Cloud &amp; DevOps</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Azure</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">AWS</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Docker</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">CI/CD</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Git</span>
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-600 rounded-full text-sm">Linux</span>
                     </div>
                 </div>
             </div>
@@ -626,16 +910,11 @@ I am a motivated software developer with a strong foundation in data structures,
     </section>
 
     <!-- Contact Section -->
-<section id="contact" class="py-20">
-    <div class="container mx-auto px-6">
-        <!-- <h2 class="text-3xl font-bold mb-12 text-center">
-            Get In <span class="gradient-text">Touch</span>
-        </h2> -->
-
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-bold mb-12 text-center">
-                Contact Information
-            </h3>
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6 max-w-2xl">
+            <h2 class="text-3xl font-bold mb-12 text-center">
+                Get In <span class="gradient-text">Touch</span>
+            </h2>
 
             <p class="mb-10 text-center text-gray-600 dark:text-gray-300">
                 Feel free to reach out to me for project inquiries,
@@ -648,10 +927,10 @@ I am a motivated software developer with a strong foundation in data structures,
                         <i class="fas fa-envelope text-primary-light dark:text-primary-dark"></i>
                     </div>
                     <div>
-                        <h4 class="font-semibold">Email</h4>
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <h3 class="font-semibold">Email</h3>
+                        <a href="mailto:sumanthponugupati@gmail.com" class="block text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
                             sumanthponugupati@gmail.com
-                        </p>
+                        </a>
                     </div>
                 </div>
 
@@ -660,10 +939,10 @@ I am a motivated software developer with a strong foundation in data structures,
                         <i class="fas fa-phone-alt text-primary-light dark:text-primary-dark"></i>
                     </div>
                     <div>
-                        <h4 class="font-semibold">Phone</h4>
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <h3 class="font-semibold">Phone</h3>
+                        <a href="tel:+919110368779" class="block text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
                             +91 9110368779
-                        </p>
+                        </a>
                     </div>
                 </div>
 
@@ -672,46 +951,48 @@ I am a motivated software developer with a strong foundation in data structures,
                         <i class="fas fa-map-marker-alt text-primary-light dark:text-primary-dark"></i>
                     </div>
                     <div>
-                        <h4 class="font-semibold">Location</h4>
+                        <h3 class="font-semibold">Location</h3>
                         <p class="text-gray-600 dark:text-gray-300">
-                            Bengaluru, India
+                            Bengaluru, Karnataka, India
                         </p>
                     </div>
                 </div>
             </div>
 
             <div class="mt-10 text-center">
-                <h4 class="font-semibold mb-4">Follow Me</h4>
+                <h3 class="font-semibold mb-4">Follow Me</h3>
 
                 <div class="flex justify-center space-x-4">
                     <a href="https://github.com/Sumanth3036"
-                       target="_blank"
+                       target="_blank" rel="noopener noreferrer" aria-label="GitHub"
                        class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                         <i class="fab fa-github"></i>
                     </a>
 
-                    <a href="https://linkedin.com/in/sumanthponugupati"
-                       target="_blank"
+                    <a href="https://www.linkedin.com/in/sumanthponugupati/"
+                       target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
                        class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-100 dark:bg-gray-800 py-12">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <a href="#" class="text-2xl font-bold gradient-text">Portfolio</a>
-                    <p class="mt-2 text-gray-600 dark:text-gray-300">© 2025 Ponugupati Sumanth. All Rights Reserved</p>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300">© 2026 Sumanth Ponugupati. All Rights Reserved</p>
                 </div>
                 
                 <div class="flex flex-wrap gap-x-6 gap-y-2 justify-center">
                     <a href="#home" class="nav-link">Home</a>
                     <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#education" class="nav-link">Education</a>
                     <a href="#projects" class="nav-link">Projects</a>
                     <a href="#certifications" class="nav-link">Certifications</a>
                     <a href="#publications" class="nav-link">Publications</a>
